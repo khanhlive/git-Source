@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +49,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Checklist.cs" />
+    <Compile Include="Models\ChiPhi.cs" />
+    <Compile Include="Models\ChiPhict.cs" />
+    <Compile Include="Models\ChucVu.cs" />
+    <Compile Include="Models\ChuongTrinhCT.cs" />
+    <Compile Include="Models\ChuongTrinhDanhGia.cs" />
+    <Compile Include="Models\CongVan.cs" />
+    <Compile Include="Models\DMCanBo.cs" />
+    <Compile Include="Models\DMNaceCode.cs" />
+    <Compile Include="Models\DMTaiLieu.cs" />
+    <Compile Include="Models\DM_CP.cs" />
+    <Compile Include="Models\DoiTuongPQ.cs" />
+    <Compile Include="Models\GiaTriHD.cs" />
+    <Compile Include="Models\HDLD.cs" />
+    <Compile Include="Models\HeThong.cs" />
+    <Compile Include="Models\HopDong.cs" />
+    <Compile Include="Models\ICB_DbContext.cs" />
+    <Compile Include="Models\KhachHang.cs" />
+    <Compile Include="Models\LoaiHD.cs" />
+    <Compile Include="Models\LoaiHinhDanhGia.cs" />
+    <Compile Include="Models\PhamViDG.cs" />
+    <Compile Include="Models\PhanQuyen.cs" />
+    <Compile Include="Models\PhatHienDanhGia.cs" />
+    <Compile Include="Models\PhongBan.cs" />
+    <Compile Include="Models\ThamXet.cs" />
+    <Compile Include="Models\ThanhPhanDanhGia.cs" />
+    <Compile Include="Models\ThanhToan.cs" />
+    <Compile Include="Models\ThongBao.cs" />
+    <Compile Include="Models\ThongBaoCT.cs" />
+    <Compile Include="Models\TieuChuan.cs" />
+    <Compile Include="Models\TrangThai.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
