@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bvyhct_caobangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CoCauToChuc">
+          <Key>
+            <PropertyRef Name="MaCC" />
+          </Key>
+          <Property Name="MaCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenPhongKham" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="MoTa" Type="ntext" />
+          <Property Name="MaNhom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBenhvien">
+          <Key>
+            <PropertyRef Name="benhvien_id" />
+          </Key>
+          <Property Name="benhvien_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="benhvien_tenbenhvien" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="benhvien_diachi" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="benhvien_dienthoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="benhvien_fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="benhvien_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="benhvien_website" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="benhvien_hotline" Type="ntext" Nullable="false" />
+          <Property Name="benhvien_lienhehanhchinh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="benhvien_capcuu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="benhvien_logo" Type="ntext" Nullable="false" />
+          <Property Name="benhvien_gioithieu" Type="ntext" />
+          <Property Name="benhvien_phanloai" Type="int" Nullable="false" />
+          <Property Name="benhvien_slogan" Type="nvarchar" MaxLength="500" />
+          <Property Name="benhvien_dvchuquan" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tblChuyenkhoa">
+          <Key>
+            <PropertyRef Name="chuyenkhoa_id" />
+          </Key>
+          <Property Name="chuyenkhoa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chuyenkhoa_name" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblChuyenmuc">
+          <Key>
+            <PropertyRef Name="chuyenmuc_id" />
+          </Key>
+          <Property Name="chuyenmuc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chuyenmuc_tenchuyenmuc" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHomthu">
+          <Key>
+            <PropertyRef Name="homthu_id" />
+          </Key>
+          <Property Name="homthu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="homthu_user_id" Type="int" Nullable="false" />
+          <Property Name="homthu_user_noidunghoi" Type="ntext" Nullable="false" />
+          <Property Name="homthu_ngayhoi" Type="datetime" Nullable="false" />
+          <Property Name="homthu_bacsi_id" Type="int" />
+          <Property Name="homthu_bacsi_giaidap" Type="ntext" />
+          <Property Name="homthu_ngaygiaidap" Type="datetime" />
+          <Property Name="homthu_phanloai" Type="int" Nullable="false" />
+          <Property Name="homthu_trangthai" Type="int" Nullable="false" />
+          <Property Name="homthu_chuyenmuc" Type="int" Nullable="false" />
+          <Property Name="homthu_kieu_traloi" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPhacdodieutri">
+          <Key>
+            <PropertyRef Name="phacdo_id" />
+          </Key>
+          <Property Name="phacdo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="phacdo_tieude" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="phacdo_noidung" Type="ntext" Nullable="false" />
+          <Property Name="phacdo_chuyenkhoa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPhanhoi">
+          <Key>
+            <PropertyRef Name="phanhoi_id" />
+          </Key>
+          <Property Name="phanhoi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="phanhoi_hoten" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="phanhoi_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phanhoi_sdt" Type="nvarchar" MaxLength="20" />
+          <Property Name="phanhoi_tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="phanhoi_noidung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="phanhoi_ngaygui" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTaikhoan">
+          <Key>
+            <PropertyRef Name="taikhoan_id" />
+          </Key>
+          <Property Name="taikhoan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taikhoan_tendangnhap" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="taikhoan_matkhau" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="taikhoan_quyen" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="taikhoan_hoten" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoan_gioitinh" Type="char" MaxLength="10" />
+          <Property Name="taikhoan_ngaysinh" Type="nvarchar" MaxLength="20" />
+          <Property Name="taikhoan_chucvu" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoan_dienthoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoan_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoan_image" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblTailieu">
+          <Key>
+            <PropertyRef Name="tailieu_id" />
+          </Key>
+          <Property Name="tailieu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tailieu_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="tailieu_tieude" Type="nvarchar" MaxLength="500" />
+          <Property Name="tailieu_ngaytao" Type="datetime" Nullable="false" />
+          <Property Name="tailieu_phanloai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblThongke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="online" Type="int" Nullable="false" />
+          <Property Name="visit" Type="int" Nullable="false" />
+          <Property Name="sum_today" Type="int" Nullable="false" />
+          <Property Name="sum_all" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTintuc">
+          <Key>
+            <PropertyRef Name="tintuc_id" />
+          </Key>
+          <Property Name="tintuc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tintuc_tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="tintuc_image" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="tintuc_ngaydang" Type="datetime" Nullable="false" />
+          <Property Name="tintuc_nguoidang" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="tintuc_phanloai" Type="int" Nullable="false" />
+          <Property Name="tintuc_trangthai" Type="int" Nullable="false" />
+          <Property Name="tintuc_motangan" Type="ntext" Nullable="false" />
+          <Property Name="tintuc_noidung" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bvyhct_caobangModelStoreContainer">
+          <EntitySet Name="CoCauToChuc" EntityType="Self.CoCauToChuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBenhvien" EntityType="Self.tblBenhvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblChuyenkhoa" EntityType="Self.tblChuyenkhoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblChuyenmuc" EntityType="Self.tblChuyenmuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHomthu" EntityType="Self.tblHomthu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPhacdodieutri" EntityType="Self.tblPhacdodieutri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPhanhoi" EntityType="Self.tblPhanhoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTaikhoan" EntityType="Self.tblTaikhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTailieu" EntityType="Self.tblTailieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblThongke" EntityType="Self.tblThongke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTintuc" EntityType="Self.tblTintuc" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bvyhct_caobangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CoCauToChuc">
+          <Key>
+            <PropertyRef Name="MaCC" />
+          </Key>
+          <Property Name="MaCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenPhongKham" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaNhom" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBenhvien">
+          <Key>
+            <PropertyRef Name="benhvien_id" />
+          </Key>
+          <Property Name="benhvien_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="benhvien_tenbenhvien" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_diachi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="benhvien_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_lienhehanhchinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_capcuu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="benhvien_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="benhvien_phanloai" Type="Int32" Nullable="false" />
+          <Property Name="benhvien_slogan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="benhvien_dvchuquan" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblChuyenkhoa">
+          <Key>
+            <PropertyRef Name="chuyenkhoa_id" />
+          </Key>
+          <Property Name="chuyenkhoa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chuyenkhoa_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblChuyenmuc">
+          <Key>
+            <PropertyRef Name="chuyenmuc_id" />
+          </Key>
+          <Property Name="chuyenmuc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chuyenmuc_tenchuyenmuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHomthu">
+          <Key>
+            <PropertyRef Name="homthu_id" />
+          </Key>
+          <Property Name="homthu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="homthu_user_id" Type="Int32" Nullable="false" />
+          <Property Name="homthu_user_noidunghoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="homthu_ngayhoi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="homthu_bacsi_id" Type="Int32" />
+          <Property Name="homthu_bacsi_giaidap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="homthu_ngaygiaidap" Type="DateTime" Precision="3" />
+          <Property Name="homthu_phanloai" Type="Int32" Nullable="false" />
+          <Property Name="homthu_trangthai" Type="Int32" Nullable="false" />
+          <Property Name="homthu_chuyenmuc" Type="Int32" Nullable="false" />
+          <Property Name="homthu_kieu_traloi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblPhacdodieutri">
+          <Key>
+            <PropertyRef Name="phacdo_id" />
+          </Key>
+          <Property Name="phacdo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="phacdo_tieude" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phacdo_noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phacdo_chuyenkhoa" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPhanhoi">
+          <Key>
+            <PropertyRef Name="phanhoi_id" />
+          </Key>
+          <Property Name="phanhoi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="phanhoi_hoten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phanhoi_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phanhoi_sdt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phanhoi_tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phanhoi_noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phanhoi_ngaygui" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblTaikhoan">
+          <Key>
+            <PropertyRef Name="taikhoan_id" />
+          </Key>
+          <Property Name="taikhoan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taikhoan_tendangnhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="taikhoan_matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="taikhoan_quyen" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="taikhoan_hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoan_gioitinh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="taikhoan_ngaysinh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoan_chucvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoan_dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoan_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoan_image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblTailieu">
+          <Key>
+            <PropertyRef Name="tailieu_id" />
+          </Key>
+          <Property Name="tailieu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tailieu_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="tailieu_tieude" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="tailieu_ngaytao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tailieu_phanloai" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblThongke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="online" Type="Int32" Nullable="false" />
+          <Property Name="visit" Type="Int32" Nullable="false" />
+          <Property Name="sum_today" Type="Int32" Nullable="false" />
+          <Property Name="sum_all" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTintuc">
+          <Key>
+            <PropertyRef Name="tintuc_id" />
+          </Key>
+          <Property Name="tintuc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tintuc_tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tintuc_image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tintuc_ngaydang" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tintuc_nguoidang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tintuc_phanloai" Type="Int32" Nullable="false" />
+          <Property Name="tintuc_trangthai" Type="Int32" Nullable="false" />
+          <Property Name="tintuc_motangan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tintuc_noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bvyhct_caobangEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CoCauToChucs" EntityType="Self.CoCauToChuc" />
+          <EntitySet Name="tblBenhviens" EntityType="Self.tblBenhvien" />
+          <EntitySet Name="tblChuyenkhoas" EntityType="Self.tblChuyenkhoa" />
+          <EntitySet Name="tblChuyenmucs" EntityType="Self.tblChuyenmuc" />
+          <EntitySet Name="tblHomthus" EntityType="Self.tblHomthu" />
+          <EntitySet Name="tblPhacdodieutris" EntityType="Self.tblPhacdodieutri" />
+          <EntitySet Name="tblPhanhois" EntityType="Self.tblPhanhoi" />
+          <EntitySet Name="tblTaikhoans" EntityType="Self.tblTaikhoan" />
+          <EntitySet Name="tblTailieux" EntityType="Self.tblTailieu" />
+          <EntitySet Name="tblThongkes" EntityType="Self.tblThongke" />
+          <EntitySet Name="tblTintucs" EntityType="Self.tblTintuc" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bvyhct_caobangModelStoreContainer" CdmEntityContainer="bvyhct_caobangEntities">
+          <EntitySetMapping Name="CoCauToChucs">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.CoCauToChuc">
+              <MappingFragment StoreEntitySet="CoCauToChuc">
+                <ScalarProperty Name="MaCC" ColumnName="MaCC" />
+                <ScalarProperty Name="TenPhongKham" ColumnName="TenPhongKham" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBenhviens">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblBenhvien">
+              <MappingFragment StoreEntitySet="tblBenhvien">
+                <ScalarProperty Name="benhvien_id" ColumnName="benhvien_id" />
+                <ScalarProperty Name="benhvien_tenbenhvien" ColumnName="benhvien_tenbenhvien" />
+                <ScalarProperty Name="benhvien_diachi" ColumnName="benhvien_diachi" />
+                <ScalarProperty Name="benhvien_dienthoai" ColumnName="benhvien_dienthoai" />
+                <ScalarProperty Name="benhvien_fax" ColumnName="benhvien_fax" />
+                <ScalarProperty Name="benhvien_email" ColumnName="benhvien_email" />
+                <ScalarProperty Name="benhvien_website" ColumnName="benhvien_website" />
+                <ScalarProperty Name="benhvien_hotline" ColumnName="benhvien_hotline" />
+                <ScalarProperty Name="benhvien_lienhehanhchinh" ColumnName="benhvien_lienhehanhchinh" />
+                <ScalarProperty Name="benhvien_capcuu" ColumnName="benhvien_capcuu" />
+                <ScalarProperty Name="benhvien_logo" ColumnName="benhvien_logo" />
+                <ScalarProperty Name="benhvien_gioithieu" ColumnName="benhvien_gioithieu" />
+                <ScalarProperty Name="benhvien_phanloai" ColumnName="benhvien_phanloai" />
+                <ScalarProperty Name="benhvien_slogan" ColumnName="benhvien_slogan" />
+                <ScalarProperty Name="benhvien_dvchuquan" ColumnName="benhvien_dvchuquan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblChuyenkhoas">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblChuyenkhoa">
+              <MappingFragment StoreEntitySet="tblChuyenkhoa">
+                <ScalarProperty Name="chuyenkhoa_id" ColumnName="chuyenkhoa_id" />
+                <ScalarProperty Name="chuyenkhoa_name" ColumnName="chuyenkhoa_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblChuyenmucs">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblChuyenmuc">
+              <MappingFragment StoreEntitySet="tblChuyenmuc">
+                <ScalarProperty Name="chuyenmuc_id" ColumnName="chuyenmuc_id" />
+                <ScalarProperty Name="chuyenmuc_tenchuyenmuc" ColumnName="chuyenmuc_tenchuyenmuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHomthus">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblHomthu">
+              <MappingFragment StoreEntitySet="tblHomthu">
+                <ScalarProperty Name="homthu_id" ColumnName="homthu_id" />
+                <ScalarProperty Name="homthu_user_id" ColumnName="homthu_user_id" />
+                <ScalarProperty Name="homthu_user_noidunghoi" ColumnName="homthu_user_noidunghoi" />
+                <ScalarProperty Name="homthu_ngayhoi" ColumnName="homthu_ngayhoi" />
+                <ScalarProperty Name="homthu_bacsi_id" ColumnName="homthu_bacsi_id" />
+                <ScalarProperty Name="homthu_bacsi_giaidap" ColumnName="homthu_bacsi_giaidap" />
+                <ScalarProperty Name="homthu_ngaygiaidap" ColumnName="homthu_ngaygiaidap" />
+                <ScalarProperty Name="homthu_phanloai" ColumnName="homthu_phanloai" />
+                <ScalarProperty Name="homthu_trangthai" ColumnName="homthu_trangthai" />
+                <ScalarProperty Name="homthu_chuyenmuc" ColumnName="homthu_chuyenmuc" />
+                <ScalarProperty Name="homthu_kieu_traloi" ColumnName="homthu_kieu_traloi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPhacdodieutris">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblPhacdodieutri">
+              <MappingFragment StoreEntitySet="tblPhacdodieutri">
+                <ScalarProperty Name="phacdo_id" ColumnName="phacdo_id" />
+                <ScalarProperty Name="phacdo_tieude" ColumnName="phacdo_tieude" />
+                <ScalarProperty Name="phacdo_noidung" ColumnName="phacdo_noidung" />
+                <ScalarProperty Name="phacdo_chuyenkhoa" ColumnName="phacdo_chuyenkhoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPhanhois">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblPhanhoi">
+              <MappingFragment StoreEntitySet="tblPhanhoi">
+                <ScalarProperty Name="phanhoi_id" ColumnName="phanhoi_id" />
+                <ScalarProperty Name="phanhoi_hoten" ColumnName="phanhoi_hoten" />
+                <ScalarProperty Name="phanhoi_email" ColumnName="phanhoi_email" />
+                <ScalarProperty Name="phanhoi_sdt" ColumnName="phanhoi_sdt" />
+                <ScalarProperty Name="phanhoi_tieude" ColumnName="phanhoi_tieude" />
+                <ScalarProperty Name="phanhoi_noidung" ColumnName="phanhoi_noidung" />
+                <ScalarProperty Name="phanhoi_ngaygui" ColumnName="phanhoi_ngaygui" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTaikhoans">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblTaikhoan">
+              <MappingFragment StoreEntitySet="tblTaikhoan">
+                <ScalarProperty Name="taikhoan_id" ColumnName="taikhoan_id" />
+                <ScalarProperty Name="taikhoan_tendangnhap" ColumnName="taikhoan_tendangnhap" />
+                <ScalarProperty Name="taikhoan_matkhau" ColumnName="taikhoan_matkhau" />
+                <ScalarProperty Name="taikhoan_quyen" ColumnName="taikhoan_quyen" />
+                <ScalarProperty Name="taikhoan_hoten" ColumnName="taikhoan_hoten" />
+                <ScalarProperty Name="taikhoan_gioitinh" ColumnName="taikhoan_gioitinh" />
+                <ScalarProperty Name="taikhoan_ngaysinh" ColumnName="taikhoan_ngaysinh" />
+                <ScalarProperty Name="taikhoan_chucvu" ColumnName="taikhoan_chucvu" />
+                <ScalarProperty Name="taikhoan_dienthoai" ColumnName="taikhoan_dienthoai" />
+                <ScalarProperty Name="taikhoan_email" ColumnName="taikhoan_email" />
+                <ScalarProperty Name="taikhoan_image" ColumnName="taikhoan_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTailieux">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblTailieu">
+              <MappingFragment StoreEntitySet="tblTailieu">
+                <ScalarProperty Name="tailieu_id" ColumnName="tailieu_id" />
+                <ScalarProperty Name="tailieu_path" ColumnName="tailieu_path" />
+                <ScalarProperty Name="tailieu_tieude" ColumnName="tailieu_tieude" />
+                <ScalarProperty Name="tailieu_ngaytao" ColumnName="tailieu_ngaytao" />
+                <ScalarProperty Name="tailieu_phanloai" ColumnName="tailieu_phanloai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblThongkes">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblThongke">
+              <MappingFragment StoreEntitySet="tblThongke">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="online" ColumnName="online" />
+                <ScalarProperty Name="visit" ColumnName="visit" />
+                <ScalarProperty Name="sum_today" ColumnName="sum_today" />
+                <ScalarProperty Name="sum_all" ColumnName="sum_all" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTintucs">
+            <EntityTypeMapping TypeName="bvyhct_caobangModel.tblTintuc">
+              <MappingFragment StoreEntitySet="tblTintuc">
+                <ScalarProperty Name="tintuc_id" ColumnName="tintuc_id" />
+                <ScalarProperty Name="tintuc_tieude" ColumnName="tintuc_tieude" />
+                <ScalarProperty Name="tintuc_image" ColumnName="tintuc_image" />
+                <ScalarProperty Name="tintuc_ngaydang" ColumnName="tintuc_ngaydang" />
+                <ScalarProperty Name="tintuc_nguoidang" ColumnName="tintuc_nguoidang" />
+                <ScalarProperty Name="tintuc_phanloai" ColumnName="tintuc_phanloai" />
+                <ScalarProperty Name="tintuc_trangthai" ColumnName="tintuc_trangthai" />
+                <ScalarProperty Name="tintuc_motangan" ColumnName="tintuc_motangan" />
+                <ScalarProperty Name="tintuc_noidung" ColumnName="tintuc_noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

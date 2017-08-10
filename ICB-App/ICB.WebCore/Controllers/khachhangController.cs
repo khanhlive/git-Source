@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace ICB.WebCore.Controllers
 {
@@ -86,6 +87,17 @@ namespace ICB.WebCore.Controllers
         public IHttpActionResult layall()
         {
             return Ok("getall");
+        }
+
+        [MyAuthorize]
+        [HttpGet]
+        public IHttpActionResult getkhachhang()
+        {
+            using (var db = new ICB.EntityFrameworkCore.Models.ICB_DbContext())
+            {
+                 
+                return Ok("");
+            }
         }
     }
 }

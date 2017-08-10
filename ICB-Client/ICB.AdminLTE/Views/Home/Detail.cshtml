@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 id="pnldemo">Detail</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:55514/token',
+            type: 'POST',
+            contentType: 'application/json',
+            data: { username: 'admin', password: 'admin', grant_type: 'password' },
+            success: function (d) {
+                $.ajax({
+                    url: 'http://localhost:55514/api/khachhang/getkhachhang',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    headers: {
+                        "Authorization": 'Bearer ' + d.access_token
+                    },
+                    success: function (d) {
+                        console.log(d);
+                        $('#pnldemo').html(JSON.stringify(d));
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+</script>
