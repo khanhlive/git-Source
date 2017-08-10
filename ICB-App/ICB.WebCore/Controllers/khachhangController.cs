@@ -11,47 +11,81 @@ namespace ICB.WebCore.Controllers
     public class khachhangController : ApiController
     {
         [MyAuthorize]
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult GetAll()
         {
             using (var db = new ICB.EntityFrameworkCore.Models.ICB_DbContext())
             {
-                var hds = (from hd in db.HopDongs select hd).ToList();//.Where(p=>p.MaHD== 14556 || p.MaHD== 14555 || p.MaHD== 14552)
-
-                var q2 = (from hd in hds
-                          join chiphi in db.ChiPhis on hd.MaHD equals chiphi.MaHD
-                          join chiphict in db.ChiPhicts on chiphi.ID_CP equals chiphict.ID_CP
-                          join dmcp in db.DM_CP on chiphict.ID_DMCP equals dmcp.ID_DMCP
-                          select new
-                          {
-                              hd,
-                              chiphi.ID_DMCP,
-                              ID_DMCPct = chiphict.ID_DMCP,
-                              tenct = dmcp.NoiDung,
-                              sotien = chiphict.SoTien
-                          }
-                          ).ToList();
-                var q3 = (from a in q2
-                          group new { a.tenct, a.sotien } by new { a.hd, a.ID_DMCP } into kq
-                          select new
-                          {
-                              kq.Key.hd.MaHD,
-                              kq.Key.ID_DMCP,
-                              tongtien = kq.Count() == 0 ? 0 : kq.Sum(p => p.sotien),
-                              chitiets = kq.Select(p => new { p.sotien, p.tenct })
-                          }).ToList();
-                var q4 = (from a in q3
-                          group a by a.MaHD into kq
-                          select new
-                          {
-                              hd = kq.Key,
-                              chiphihoso = kq.FirstOrDefault(p => p.ID_DMCP == 37) != null ? kq.FirstOrDefault(p => p.ID_DMCP == 37).tongtien : 0,
-                              chiphidanhgia = kq.FirstOrDefault(p => p.ID_DMCP == 23) != null ? kq.FirstOrDefault(p => p.ID_DMCP == 23).tongtien : 0,
-                              chiphihoahong = kq.FirstOrDefault(p => p.ID_DMCP == 9) != null ? kq.FirstOrDefault(p => p.ID_DMCP == 9).tongtien : 0,
-                              chiphithunghiems = kq.FirstOrDefault(p => p.ID_DMCP == 19) != null ? kq.FirstOrDefault(p => p.ID_DMCP == 19).chitiets : null
-                          }).ToList();
-                return Ok(q4);
+                var Data = (from cp in db.ChiPhis
+                            join hdong in db.HopDongs on cp.MaHD equals hdong.MaHD
+                            join kh in db.KhachHangs on hdong.MaKH equals kh.MaKH
+                            join noidungcp in db.DM_CP on cp.ID_DMCP equals noidungcp.ID_DMCP
+                            join cpct in db.ChiPhicts on cp.ID_CP equals cpct.ID_CP
+                            where cp.MaHD == 14556
+                            select new
+                            {
+                                ID_CP = cp.ID_CP,
+                                MaCB = cpct.MaCB,
+                                SoTien = cp.SoTien,
+                                NoiDungChiPhi = noidungcp.NoiDung,
+                                NgayNhap = cp.NgayNhap,
+                                TenHD = hdong.TenHD,
+                                MaHD = hdong.MaHD,
+                                MaQD = hdong.MaQD,
+                                MaKH = hdong.MaKH,
+                                TenKH = kh.TenKH
+                            }).ToList();
+                var d = (from a in Data
+                         join b in db.DMCanBoes on a.MaCB equals b.MaCB into kq
+                         from c in kq.DefaultIfEmpty()
+                         select new
+                         {
+                             ID_CP = a.ID_CP,
+                             SoTien = a.SoTien,
+                             NoiDungChiPhi = a.NoiDungChiPhi,
+                             NgayNhap = a.NgayNhap,
+                             TenHD = a.TenHD,
+                             MaHD = a.MaHD,
+                             MaQD = a.MaQD,
+                             MaKH = a.MaKH,
+                             TenKH = a.TenKH,
+                             tencb = c == null ? "" : c.TenCB
+                         }).ToList();
+                var datasource = (from dd in d
+                                  group dd.tencb by new { dd.ID_CP, dd.MaHD, dd.MaKH, dd.MaQD, dd.NgayNhap, dd.NoiDungChiPhi, dd.SoTien, dd.TenHD, dd.TenKH } into kq
+                                  select new
+                                  {
+                                      ID_CP = kq.Key.ID_CP,
+                                      SoTien = kq.Key.SoTien,
+                                      NoiDungChiPhi = kq.Key.NoiDungChiPhi,
+                                      NgayNhap = kq.Key.NgayNhap,
+                                      TenHD = kq.Key.TenHD,
+                                      MaHD = kq.Key.MaHD,
+                                      MaQD = kq.Key.MaQD,
+                                      MaKH = kq.Key.MaKH,
+                                      TenKH = kq.Key.TenKH,
+                                      tencb = kq.Select(p => p).Distinct()
+                                  }).AsEnumerable().Select(p => new {
+                                      ID_CP = p.ID_CP,
+                                      MaCB = string.Join(" + ", p.tencb),
+                                      SoTien = p.SoTien,
+                                      NoiDungChiPhi = p.NoiDungChiPhi,
+                                      NgayNhap = p.NgayNhap,
+                                      TenHD = p.TenHD,
+                                      MaHD = p.MaHD,
+                                      MaQD = p.MaQD,
+                                      MaKH = p.MaKH,
+                                      TenKH = p.TenKH
+                                  }).ToList();
+                return Ok(datasource);
             }
             
+        }
+
+        [HttpGet]
+        public IHttpActionResult layall()
+        {
+            return Ok("getall");
         }
     }
 }

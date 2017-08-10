@@ -11,9 +11,16 @@ namespace ICB.WebCore.Security
 {
     public class MyAuthorizeServerProvider : OAuthAuthorizationServerProvider
     {
-        public override async System.Threading.Tasks.Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        private readonly string _publicClientId;
+        public override System.Threading.Tasks.Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            context.Validated();
+            // Resource owner password credentials does not provide a client ID.
+            if (context.ClientId == null)
+            {
+                context.Validated();
+            }
+
+            return Task.FromResult<object>(null);
         }
 
         public override async System.Threading.Tasks.Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -24,16 +31,18 @@ namespace ICB.WebCore.Security
                 indentity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
                 indentity.AddClaim(new Claim("username", "admin"));
                 indentity.AddClaim(new Claim(ClaimTypes.Name, "KhanhLive"));
-                var prop = new AuthenticationProperties(new Dictionary<string, string> { { "username1", "admin" }});
+                indentity.AddClaim(new Claim("guid", Guid.NewGuid().ToString()));
+                var prop = new AuthenticationProperties(new Dictionary<string, string> { { "trtrtr", "admin" }});
                 var ticket = new AuthenticationTicket(indentity, prop);
                 context.Validated(ticket);
             }
             else if (context.UserName == "user" && context.Password == "user")
             {
                 indentity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+                indentity.AddClaim(new Claim("guid", Guid.NewGuid().ToString()));
                 indentity.AddClaim(new Claim("username", "user"));
                 indentity.AddClaim(new Claim(ClaimTypes.Name, "Member"));
-                var prop = new AuthenticationProperties(new Dictionary<string, string> { { "username1", "user" }});
+                var prop = new AuthenticationProperties(new Dictionary<string, string> { { "trtrtrtfgfg", "user" }});
                 var ticket = new AuthenticationTicket(indentity, prop);
                 context.Validated(ticket);
             }
@@ -42,6 +51,31 @@ namespace ICB.WebCore.Security
                 context.SetError("invalid_grant", "Provided Username and Password is incorrect");
                 return;
             }
+        }
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+
+            return Task.FromResult<object>(null);
+        }
+        
+
+        public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
+        {
+            if (context.ClientId == _publicClientId)
+            {
+                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+
+                if (expectedRootUri.AbsoluteUri == context.RedirectUri)
+                {
+                    context.Validated();
+                }
+            }
+
+            return Task.FromResult<object>(null);
         }
     }
 }
