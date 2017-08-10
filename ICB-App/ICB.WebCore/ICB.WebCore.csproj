@@ -42,5 +42,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ICB.EntityFrameworkCore\ICB.EntityFrameworkCore.csproj">
+      <Project>{e76b88b0-071d-41ca-b02d-3b63a7a511ab}</Project>
+      <Name>ICB.EntityFrameworkCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
