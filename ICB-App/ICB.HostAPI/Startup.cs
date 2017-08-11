@@ -25,7 +25,6 @@ namespace ICB.HostAPI
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-
                 Provider = myProvider
             };
             app.UseOAuthAuthorizationServer(OAuthOptions);

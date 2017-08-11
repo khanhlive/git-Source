@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
+using ICB.EntityFrameworkCore.Services.KhachHangObject;
 
 namespace ICB.WebCore.Controllers
 {
     public class khachhangController : ApiController
     {
-        [MyAuthorize]
+        
         [HttpGet]
         public IHttpActionResult GetAll()
         {
@@ -98,6 +99,20 @@ namespace ICB.WebCore.Controllers
                  
                 return Ok("");
             }
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetByID(string id)
+        {
+            KhachHangProvider provider = new KhachHangProvider();
+            return Ok(await provider.GetByIDAsync(id));
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetFunc(string id)
+        {
+            KhachHangProvider provider = new KhachHangProvider();
+            return Ok(await provider.GetAsync(p=>p.MaKH== id));
         }
     }
 }

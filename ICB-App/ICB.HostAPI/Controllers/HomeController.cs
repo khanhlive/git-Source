@@ -1,4 +1,5 @@
 ﻿using ICB.EntityFrameworkCore.Services;
+using ICB.EntityFrameworkCore.Services.KhachHangObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace ICB.HostAPI.Controllers
         public async Task< ActionResult> Index()
         {
             KhachHangProvider serivce = new KhachHangProvider();
-            var a = await serivce.GetAllAsync();
-            return Json(a,JsonRequestBehavior.AllowGet);
+            var a = await serivce.GetByIDAsync("151606");
+            return Json(a, JsonRequestBehavior.AllowGet);
         }
     }
 }
