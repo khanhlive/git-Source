@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E76B88B0-071D-41CA-B02D-3B63A7A511AB}</ProjectGuid>
+    <ProjectGuid>{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ICB.EntityFrameworkCore</RootNamespace>
-    <AssemblyName>ICB.EntityFrameworkCore</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>NDK.ApplicationCore</RootNamespace>
+    <AssemblyName>NDK.ApplicationCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,9 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,52 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Checklist.cs" />
-    <Compile Include="Models\ChiPhi.cs" />
-    <Compile Include="Models\ChiPhict.cs" />
-    <Compile Include="Models\ChucVu.cs" />
-    <Compile Include="Models\ChuongTrinhCT.cs" />
-    <Compile Include="Models\ChuongTrinhDanhGia.cs" />
-    <Compile Include="Models\CongVan.cs" />
-    <Compile Include="Models\DMCanBo.cs" />
-    <Compile Include="Models\DMNaceCode.cs" />
-    <Compile Include="Models\DMTaiLieu.cs" />
-    <Compile Include="Models\DM_CP.cs" />
-    <Compile Include="Models\DoiTuongPQ.cs" />
-    <Compile Include="Models\GiaTriHD.cs" />
-    <Compile Include="Models\HDLD.cs" />
-    <Compile Include="Models\HeThong.cs" />
-    <Compile Include="Models\HopDong.cs" />
-    <Compile Include="Models\ICB_DbContext.cs" />
-    <Compile Include="Models\KhachHang.cs" />
-    <Compile Include="Models\LoaiHD.cs" />
-    <Compile Include="Models\LoaiHinhDanhGia.cs" />
-    <Compile Include="Models\PhamViDG.cs" />
-    <Compile Include="Models\PhanQuyen.cs" />
-    <Compile Include="Models\PhatHienDanhGia.cs" />
-    <Compile Include="Models\PhongBan.cs" />
-    <Compile Include="Models\ThamXet.cs" />
-    <Compile Include="Models\ThanhPhanDanhGia.cs" />
-    <Compile Include="Models\ThanhToan.cs" />
-    <Compile Include="Models\ThongBao.cs" />
-    <Compile Include="Models\ThongBaoCT.cs" />
-    <Compile Include="Models\TieuChuan.cs" />
-    <Compile Include="Models\TrangThai.cs" />
+    <Compile Include="EFGenericRepository\EntityFrameworkRepository.cs" />
+    <Compile Include="EFGenericRepository\IRepository.cs" />
+    <Compile Include="Extensions\ResponseResults\AccessEntityStatusCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ApplicationManager.cs" />
-    <Compile Include="Services\CanBos\CanBoProvider.cs" />
-    <Compile Include="Services\KhachHangs\KhachHangProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NDK.ApplicationCore\NDK.ApplicationCore.csproj">
-      <Project>{fc33fe28-1e14-4150-b844-bacbaaf4dea2}</Project>
-      <Name>NDK.ApplicationCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

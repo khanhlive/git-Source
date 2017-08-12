@@ -1,5 +1,5 @@
 ﻿using ICB.EntityFrameworkCore.Services;
-using ICB.EntityFrameworkCore.Services.KhachHangObject;
+using ICB.EntityFrameworkCore.Services.KhachHangs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

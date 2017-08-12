@@ -203,6 +203,10 @@
       <Project>{aa2843c2-865d-4e97-b08a-24cb9a0b8c4a}</Project>
       <Name>ICB.WebCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NDK.ApplicationCore\NDK.ApplicationCore.csproj">
+      <Project>{fc33fe28-1e14-4150-b844-bacbaaf4dea2}</Project>
+      <Name>NDK.ApplicationCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -101,6 +101,10 @@
       <Project>{e76b88b0-071d-41ca-b02d-3b63a7a511ab}</Project>
       <Name>ICB.EntityFrameworkCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NDK.ApplicationCore\NDK.ApplicationCore.csproj">
+      <Project>{fc33fe28-1e14-4150-b844-bacbaaf4dea2}</Project>
+      <Name>NDK.ApplicationCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

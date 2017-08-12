@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ICB.Extensions.ResponseResults
+namespace NDK.ApplicationCore.Extensions.ResponseResults
 {
     public enum AccessEntityStatusCode
     {

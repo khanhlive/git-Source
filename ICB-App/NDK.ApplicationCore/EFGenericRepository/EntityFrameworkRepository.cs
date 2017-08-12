@@ -1,4 +1,5 @@
-﻿using ICB.Extensions.ResponseResults;
+﻿
+using NDK.ApplicationCore.Extensions.ResponseResults;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,18 +8,20 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ICB.EntityFrameworkCore.EFGenericRepository
+namespace NDK.ApplicationCore.EFGenericRepository
 {
+    
     public class EntityFrameworkRepository<T, KeyType> : IRepository<T, KeyType> where T : class
     {
+
         private readonly DbSet<T> dbSet;
 
-        private ICB.EntityFrameworkCore.Models.ICB_DbContext context;
-
-        public EntityFrameworkRepository()
+        protected DbContext context;
+        public EntityFrameworkRepository(DbContext db)
         {
-            this.context = new Models.ICB_DbContext();
+            this.context = db;// new Models.ICB_DbContext();
             this.dbSet = this.context.Set<T>();
+            //this.db = new DbContext();
         }
 
         public int Count()
@@ -86,10 +89,18 @@ namespace ICB.EntityFrameworkCore.EFGenericRepository
 
         public async Task<Tuple<AccessEntityStatusCode,T>> InsertAsync(T item)
         {
+            
             this.context.Set<T>().Add(item);
             int counter = await this.context.SaveChangesAsync();
-            this.context.Entry(item).GetDatabaseValues();
-            return (item);
+            if (counter>0)
+            {
+                this.context.Entry(item).GetDatabaseValues();
+                return Tuple.Create(AccessEntityStatusCode.OK,item);
+            }
+            else
+            {
+                return Tuple.Create(AccessEntityStatusCode.Failed, item);
+            }
         }
 
         public IQueryable<T> Select()
@@ -97,17 +108,40 @@ namespace ICB.EntityFrameworkCore.EFGenericRepository
             return this.dbSet;
         }
 
-        public T Update(T item, KeyType id)
+        public Tuple<AccessEntityStatusCode, T> Update(T item, KeyType id)
         {
-            this.context.Set<T>().Attach(item);
-            this.context.Entry<T>(item).State = EntityState.Modified;
-            int counter = this.context.SaveChanges();
-            return (counter > 0);
+            var model = this.context.Set<T>().Find(id);
+            if (model!=null)
+            {
+                this.context.Set<T>().Attach(item);
+                this.context.Entry<T>(item).State = EntityState.Modified;
+                int counter = this.context.SaveChanges();
+                this.context.Entry<T>(item).GetDatabaseValues();
+                return Tuple.Create(counter > 0 ? AccessEntityStatusCode.OK : AccessEntityStatusCode.Failed, item);
+            }
+            else
+            {
+                return Tuple.Create( AccessEntityStatusCode.NotFound, item);
+            }
+            
         }
 
-        public Task<bool> UpdateAsync(T item, KeyType id)
+        public async Task<Tuple<AccessEntityStatusCode, T>> UpdateAsync(T item, KeyType id)
         {
-            throw new NotImplementedException();
+            var model =await this.context.Set<T>().FindAsync(id);
+            if (model != null)
+            {
+                this.context.Set<T>().Attach(item);
+                this.context.Entry<T>(item).State = EntityState.Modified;
+                int counter = await this.context.SaveChangesAsync();
+                this.context.Entry<T>(item).GetDatabaseValues();
+                return Tuple.Create(counter > 0 ? AccessEntityStatusCode.OK : AccessEntityStatusCode.Failed, item);
+            }
+            else
+            {
+                return Tuple.Create(AccessEntityStatusCode.NotFound, item);
+            }
         }
     }
+    
 }

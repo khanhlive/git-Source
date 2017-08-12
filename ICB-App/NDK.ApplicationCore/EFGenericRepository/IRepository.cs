@@ -1,15 +1,18 @@
-﻿using ICB.Extensions.ResponseResults;
+﻿
+using NDK.ApplicationCore.Extensions.ResponseResults;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ICB.EntityFrameworkCore.EFGenericRepository
+namespace NDK.ApplicationCore.EFGenericRepository
 {
     public interface IRepository<T,KeyType> where T : class
     {
+        
         /// <summary>
         /// 
         /// </summary>

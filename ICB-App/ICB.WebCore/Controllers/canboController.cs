@@ -1,6 +1,7 @@
-﻿using ICB.EntityFrameworkCore.EFGenericRepository;
+﻿
 using ICB.EntityFrameworkCore.Models;
-using ICB.EntityFrameworkCore.Services.CanboObject;
+using ICB.EntityFrameworkCore.Services.CanBos;
+using ICB.EntityFrameworkCore.Services.KhachHangs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +17,22 @@ namespace ICB.WebCore.Controllers
         public async Task<IHttpActionResult> GetAll()
         {
             CanBoProvider provider = new CanBoProvider();
-            return Ok(await provider.GetAllAsync());
+            return Ok(await provider.FindAllAsync(p=>p.MaCB!=0));
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetByID(string id)
         {
             //CanBoProvider provider = new CanBoProvider();
-            KhachHangManager provider = new KhachHangManager();
-            return Ok(await provider.GetAsync(id));
+            KhachHangProvider provider = new KhachHangProvider();
+            return Ok(await provider.GetByIDAsync(id));
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetFunc(int id)
         {
             CanBoProvider provider = new CanBoProvider();
-            return Ok(await provider.GetAsync(p => p.MaCB == id));
+            return Ok(await provider.FindAsync(p => p.MaCB == id));
         }
 
         [HttpGet]

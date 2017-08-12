@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICB.WebCore", "ICB.WebCore\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICB.HostAPI", "ICB.HostAPI\ICB.HostAPI.csproj", "{5C6C1926-29D2-4DFB-B6B0-B3989895E095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICB.Extensions", "ICB.Extensions\ICB.Extensions.csproj", "{32E50FB1-3E5D-460D-BBDC-844A69538FD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDK.ApplicationCore", "NDK.ApplicationCore\NDK.ApplicationCore.csproj", "{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{5C6C1926-29D2-4DFB-B6B0-B3989895E095}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C6C1926-29D2-4DFB-B6B0-B3989895E095}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C6C1926-29D2-4DFB-B6B0-B3989895E095}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32E50FB1-3E5D-460D-BBDC-844A69538FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32E50FB1-3E5D-460D-BBDC-844A69538FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32E50FB1-3E5D-460D-BBDC-844A69538FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32E50FB1-3E5D-460D-BBDC-844A69538FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC33FE28-1E14-4150-B844-BACBAAF4DEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
