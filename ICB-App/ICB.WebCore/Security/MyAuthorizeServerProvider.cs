@@ -12,6 +12,19 @@ namespace ICB.WebCore.Security
     public class MyAuthorizeServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
+        public MyAuthorizeServerProvider(string publicClientId)
+        {
+            if (publicClientId == null)
+            {
+                throw new ArgumentNullException("publicClientId");
+            }
+
+            _publicClientId = publicClientId;
+        }
+        public MyAuthorizeServerProvider()
+        {
+            _publicClientId = "publicKey";
+        }
         public override System.Threading.Tasks.Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             // Resource owner password credentials does not provide a client ID.

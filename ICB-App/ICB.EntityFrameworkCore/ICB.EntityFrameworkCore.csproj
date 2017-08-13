@@ -83,8 +83,15 @@
     <Compile Include="Models\TieuChuan.cs" />
     <Compile Include="Models\TrangThai.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Accounts\AccountProvider.cs" />
     <Compile Include="Services\ApplicationManager.cs" />
-    <Compile Include="Services\CanBos\CanBoProvider.cs" />
+    <Compile Include="Services\ChiPhis\ChiPhiCTProvider.cs" />
+    <Compile Include="Services\ChiPhis\ChiPhiProvider.cs" />
+    <Compile Include="Services\ChuongTrinhDanhGias\ChuongTrinhDanhGiaProvider.cs" />
+    <Compile Include="Services\CongVans\CongVanProvider.cs" />
+    <Compile Include="Services\DanhMucs\CanBos\CanBoProvider.cs" />
+    <Compile Include="Services\GiaTriHD\GiaTriHopDongProvider.cs" />
+    <Compile Include="Services\HDLaoDongs\HopDongLaoDongProvider.cs" />
     <Compile Include="Services\KhachHangs\KhachHangProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +103,29 @@
       <Project>{fc33fe28-1e14-4150-b844-bacbaaf4dea2}</Project>
       <Name>NDK.ApplicationCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\DanhMucs\CheckLists\" />
+    <Folder Include="Services\DanhMucs\ChiPhis\" />
+    <Folder Include="Services\DanhMucs\ChucVus\" />
+    <Folder Include="Services\DanhMucs\DoiTuongPQs\" />
+    <Folder Include="Services\DanhMucs\LoaiHDs\" />
+    <Folder Include="Services\DanhMucs\LoaiHinhDanhGias\" />
+    <Folder Include="Services\DanhMucs\NaceCodes\" />
+    <Folder Include="Services\DanhMucs\PhongBans\" />
+    <Folder Include="Services\DanhMucs\TaiLieus\" />
+    <Folder Include="Services\DanhMucs\TieuChuans\" />
+    <Folder Include="Services\DanhMucs\TrangThais\" />
+    <Folder Include="Services\HeThongs\" />
+    <Folder Include="Services\HopDongs\" />
+    <Folder Include="Services\LoaiHinhDanhGias\" />
+    <Folder Include="Services\PhamViDanhGias\" />
+    <Folder Include="Services\PhanQuyens\" />
+    <Folder Include="Services\PhatHienDanhGias\" />
+    <Folder Include="Services\ThamSets\" />
+    <Folder Include="Services\ThanhPhanDanhGias\" />
+    <Folder Include="Services\ThanhToans\" />
+    <Folder Include="Services\ThongBaos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

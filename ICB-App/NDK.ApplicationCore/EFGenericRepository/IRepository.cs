@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace NDK.ApplicationCore.EFGenericRepository
 {
+    /// <summary>
+    /// Interface: tạo phương thức chung cho Entity
+    /// </summary>
+    /// <typeparam name="T">Đối tượng cần tạo</typeparam>
+    /// <typeparam name="KeyType">Kiểu dữ liệu Key Field </typeparam>
     public interface IRepository<T,KeyType> where T : class
     {
         
@@ -19,19 +24,88 @@ namespace NDK.ApplicationCore.EFGenericRepository
         /// <param name="item"></param>
         /// <returns></returns>
         AccessEntityStatusCode Insert(T item);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         Task<Tuple<AccessEntityStatusCode, T>> InsertAsync(T item);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Tuple<AccessEntityStatusCode, T> Update(T item, KeyType id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<Tuple<AccessEntityStatusCode, T>> UpdateAsync(T item, KeyType id);
+        /// <summary>
+        /// asdas dá 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         AccessEntityStatusCode Delete(T item);
+        /// <summary>
+        /// avcvcvc vcvcc
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         Task<AccessEntityStatusCode> DeleteAsync(T item);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         IQueryable<T> Select();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         T GetByID(KeyType id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<T> GetByIDAsync(KeyType id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         T Find(Expression<Func<T, bool>> match);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         Task<T> FindAsync(Expression<Func<T, bool>> match);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         ICollection<T> FindAll(Expression<Func<T, bool>> match);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         int Count();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         Task<int> CountAsync();
     }
 }

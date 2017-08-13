@@ -10,13 +10,26 @@ using System.Threading.Tasks;
 
 namespace NDK.ApplicationCore.EFGenericRepository
 {
-    
-    public class EntityFrameworkRepository<T, KeyType> : IRepository<T, KeyType> where T : class
+    /// <summary>
+    /// Thiết lập kiểu dữ liệu và đối tượng cần tạo Services
+    /// </summary>
+    /// <typeparam name="T">Kiểu dữ liệu đối tượng cần tạo</typeparam>
+    /// <typeparam name="KeyType">Kiểu dữ liệu Key Field</typeparam>
+    public class EntityFrameworkRepository<T, KeyType> : IDisposable,IRepository<T, KeyType> where T : class
     {
-
+        /// <summary>
+        /// DbSet
+        /// </summary>
         private readonly DbSet<T> dbSet;
 
+        /// <summary>
+        /// DbContext Entities
+        /// </summary>
         protected DbContext context;
+        /// <summary>
+        /// Khởi tạo với DbContext
+        /// </summary>
+        /// <param name="db">DbContext Entities</param>
         public EntityFrameworkRepository(DbContext db)
         {
             this.context = db;// new Models.ICB_DbContext();
@@ -24,72 +37,125 @@ namespace NDK.ApplicationCore.EFGenericRepository
             //this.db = new DbContext();
         }
 
-        public int Count()
+        /// <summary>
+        /// Đếm số lượng bản ghi
+        /// </summary>
+        /// <returns>int: trả về số lượng bản ghi có trong bảng</returns>
+        public virtual int Count()
         {
             return this.dbSet.Count();
         }
 
-        public async Task<int> CountAsync()
+        /// <summary>
+        /// Bất đồng bộ: Đếm số lượng bản ghi
+        /// </summary>
+        /// <returns>int: trả về số lượng bản ghi có trong bảng</returns>
+        public virtual async Task<int> CountAsync()
         {
             return await this.dbSet.CountAsync();
         }
 
-        public AccessEntityStatusCode Delete(T item)
+        /// <summary>
+        /// Xóa đối tượng
+        /// </summary>
+        /// <param name="item">Đối tượng cần xóa</param>
+        /// <returns>AccessEntityStatusCode</returns>
+        public virtual AccessEntityStatusCode Delete(T item)
         {
             this.context.Set<T>().Attach(item);
             this.context.Entry<T>(item).State = EntityState.Deleted;
             int counter = this.context.SaveChanges();
             return (counter > 0 ? AccessEntityStatusCode.OK : AccessEntityStatusCode.Failed);
         }
-
-        public async Task<AccessEntityStatusCode> DeleteAsync(T item)
+        /// <summary>
+        /// Bất đồng bộ: Xóa đối tượng
+        /// </summary>
+        /// <param name="item">Đối tượng cần xóa</param>
+        /// <returns>AccessEntityStatusCode</returns>
+        public virtual async Task<AccessEntityStatusCode> DeleteAsync(T item)
         {
             this.context.Set<T>().Attach(item);
             this.context.Entry<T>(item).State = EntityState.Deleted;
             int counter = await this.context.SaveChangesAsync();
             return (counter > 0 ? AccessEntityStatusCode.OK : AccessEntityStatusCode.Failed);
         }
-
-        public T Find(Expression<Func<T, bool>> match)
+        /// <summary>
+        /// Trả về phần tử đầu tiên phù hợp với 'biểu thức' tìm kiếm
+        /// </summary>
+        /// <param name="match">Biểu thức tìm kiếm</param>
+        /// <returns></returns>
+        public virtual T Find(Expression<Func<T, bool>> match)
         {
             return this.context.Set<T>().FirstOrDefault(match);
         }
 
-        public ICollection<T> FindAll(Expression<Func<T, bool>> match)
+        /// <summary>
+        /// Trả về ICollection phù hợp với 'biểu thức' tìm kiếm
+        /// </summary>
+        /// <param name="match">Biểu thức tìm kiếm</param>
+        /// <returns></returns>
+        public virtual ICollection<T> FindAll(Expression<Func<T, bool>> match)
         {
             return this.context.Set<T>().Where(match).ToList();
         }
-
-        public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
+        /// <summary>
+        /// Bất đồng bộ: Trả về ICollection phù hợp với 'biểu thức' tìm kiếm
+        /// </summary>
+        /// <param name="match">Biểu thức tìm kiếm</param>
+        /// <returns></returns>
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
         {
             return await this.context.Set<T>().Where(match).ToListAsync();
         }
 
-        public async Task<T> FindAsync(Expression<Func<T, bool>> match)
+        /// <summary>
+        /// Bất đồng bộ: Trả về phần tử đầu tiên phù hợp với 'biểu thức' tìm kiếm
+        /// </summary>
+        /// <param name="match">Biểu thức tìm kiếm</param>
+        /// <returns></returns>
+        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> match)
         {
             return await this.context.Set<T>().FirstOrDefaultAsync(match);
         }
 
-        public T GetByID(KeyType id)
+        /// <summary>
+        /// Tìm kiếm phần tử trong DbSet theo Key Field
+        /// </summary>
+        /// <param name="id">Key Value</param>
+        /// <returns></returns>
+        public virtual T GetByID(KeyType id)
         {
             return this.context.Set<T>().Find(id);
         }
-
-        public async Task<T> GetByIDAsync(KeyType id)
+        /// <summary>
+        /// Bất đồng bộ: Tìm kiếm phần tử trong DbSet theo Key Field
+        /// </summary>
+        /// <param name="id">Key Value</param>
+        /// <returns></returns>
+        public virtual async Task<T> GetByIDAsync(KeyType id)
         {
             return await this.context.Set<T>().FindAsync(id);
         }
 
-        public AccessEntityStatusCode Insert(T item)
+        /// <summary>
+        /// Thêm mới phần tử vào Collections
+        /// </summary>
+        /// <param name="item">Đối tượng cần thêm</param>
+        /// <returns></returns>
+        public virtual AccessEntityStatusCode Insert(T item)
         {
             this.context.Set<T>().Add(item);
             int counter = this.context.SaveChanges();
             return (counter > 0 ? AccessEntityStatusCode.OK : AccessEntityStatusCode.Failed);
         }
 
-        public async Task<Tuple<AccessEntityStatusCode,T>> InsertAsync(T item)
+        /// <summary>
+        /// Bất đồng bộ: Thêm mới phần tử vào Collections
+        /// </summary>
+        /// <param name="item">Đối tượng cần thêm</param>
+        /// <returns></returns>
+        public virtual async Task<Tuple<AccessEntityStatusCode,T>> InsertAsync(T item)
         {
-            
             this.context.Set<T>().Add(item);
             int counter = await this.context.SaveChangesAsync();
             if (counter>0)
@@ -102,13 +168,21 @@ namespace NDK.ApplicationCore.EFGenericRepository
                 return Tuple.Create(AccessEntityStatusCode.Failed, item);
             }
         }
-
-        public IQueryable<T> Select()
+        /// <summary>
+        /// Return DbSet
+        /// </summary>
+        /// <returns></returns>
+        public virtual IQueryable<T> Select()
         {
             return this.dbSet;
         }
-
-        public Tuple<AccessEntityStatusCode, T> Update(T item, KeyType id)
+        /// <summary>
+        /// Cập nhật giá trị cho đối tượng
+        /// </summary>
+        /// <param name="item">Đối tượng cần cập nhật giá trị</param>
+        /// <param name="id">Key Value</param>
+        /// <returns></returns>
+        public virtual Tuple<AccessEntityStatusCode, T> Update(T item, KeyType id)
         {
             var model = this.context.Set<T>().Find(id);
             if (model!=null)
@@ -126,7 +200,13 @@ namespace NDK.ApplicationCore.EFGenericRepository
             
         }
 
-        public async Task<Tuple<AccessEntityStatusCode, T>> UpdateAsync(T item, KeyType id)
+        /// <summary>
+        /// Bất đồng bộ: Cập nhật giá trị cho đối tượng
+        /// </summary>
+        /// <param name="item">Đối tượng cần cập nhật giá trị</param>
+        /// <param name="id">Key Value</param>
+        /// <returns></returns>
+        public virtual async Task<Tuple<AccessEntityStatusCode, T>> UpdateAsync(T item, KeyType id)
         {
             var model =await this.context.Set<T>().FindAsync(id);
             if (model != null)
@@ -141,6 +221,14 @@ namespace NDK.ApplicationCore.EFGenericRepository
             {
                 return Tuple.Create(AccessEntityStatusCode.NotFound, item);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {   
+            this.context.Dispose();
         }
     }
     

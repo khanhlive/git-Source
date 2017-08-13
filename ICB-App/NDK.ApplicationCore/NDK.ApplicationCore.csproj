@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\NDK.ApplicationCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +51,7 @@
     <Compile Include="EFGenericRepository\EntityFrameworkRepository.cs" />
     <Compile Include="EFGenericRepository\IRepository.cs" />
     <Compile Include="Extensions\ResponseResults\AccessEntityStatusCode.cs" />
+    <Compile Include="Extensions\ResponseResults\ResponseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
