@@ -85,9 +85,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\accountController.cs" />
     <Compile Include="Controllers\canboController.cs" />
+    <Compile Include="Controllers\CongVanController.cs" />
     <Compile Include="Controllers\khachhangController.cs" />
+    <Compile Include="Controllers\NaceCodeController.cs" />
+    <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\ThongBaoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\MyAuthorizeAttribute.cs" />
     <Compile Include="Security\MyAuthorizeServerProvider.cs" />

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ICB.EntityFrameworkCore.Services.Accounts
+namespace ICB.EntityFrameworkCore.Services.ThanhToans
 {
-    public class AccountProvider : ApplicationManager<Models.Admin,int>
+    public class ThanhToanProvider : ApplicationManager<Models.ThanhToan,int>
     {
-        
     }
 }

@@ -61,6 +61,13 @@ namespace NDK.ApplicationCore.EFGenericRepository
         /// </summary>
         /// <returns></returns>
         IQueryable<T> Select();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<ICollection<T>> GetAllAsync();
+
         /// <summary>
         /// 
         /// </summary>

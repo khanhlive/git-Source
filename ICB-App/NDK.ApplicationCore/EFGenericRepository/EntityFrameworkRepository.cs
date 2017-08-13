@@ -230,6 +230,14 @@ namespace NDK.ApplicationCore.EFGenericRepository
         {   
             this.context.Dispose();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task<ICollection<T>> GetAllAsync()
+        {
+            return await this.context.Set<T>().ToListAsync();
+        }
     }
     
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ICB.EntityFrameworkCore.Services.Accounts
+namespace ICB.EntityFrameworkCore.Services.HeThongs
 {
-    public class AccountProvider : ApplicationManager<Models.Admin,int>
+    public class HeThongProvider : ApplicationManager<Models.HeThong, int>
     {
-        
+
     }
 }

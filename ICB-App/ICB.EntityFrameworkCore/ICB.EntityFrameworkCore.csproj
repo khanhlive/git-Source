@@ -90,9 +90,30 @@
     <Compile Include="Services\ChuongTrinhDanhGias\ChuongTrinhDanhGiaProvider.cs" />
     <Compile Include="Services\CongVans\CongVanProvider.cs" />
     <Compile Include="Services\DanhMucs\CanBos\CanBoProvider.cs" />
+    <Compile Include="Services\DanhMucs\CheckLists\DM_CheckListProvider.cs" />
+    <Compile Include="Services\DanhMucs\ChiPhis\DM_ChiPhiProvider.cs" />
+    <Compile Include="Services\DanhMucs\ChucVus\DM_ChucVuProvider.cs" />
+    <Compile Include="Services\DanhMucs\DoiTuongPQs\DM_DoiTuongPQProvider.cs" />
+    <Compile Include="Services\DanhMucs\LoaiHDs\DM_LoaiHDProvider.cs" />
+    <Compile Include="Services\DanhMucs\LoaiHinhDanhGias\DM_LoaiHinhDanhGiaProvider.cs" />
+    <Compile Include="Services\DanhMucs\NaceCodes\DM_NaceCodeProvider.cs" />
+    <Compile Include="Services\DanhMucs\PhongBans\DM_PhongBanProvider.cs" />
+    <Compile Include="Services\DanhMucs\TaiLieus\DM_TaiLieuProvider.cs" />
+    <Compile Include="Services\DanhMucs\TieuChuans\DM_TieuChuanProvider.cs" />
+    <Compile Include="Services\DanhMucs\TrangThais\DM_TrangThaiProvider.cs" />
     <Compile Include="Services\GiaTriHD\GiaTriHopDongProvider.cs" />
     <Compile Include="Services\HDLaoDongs\HopDongLaoDongProvider.cs" />
+    <Compile Include="Services\HeThongs\HeThongProvider.cs" />
+    <Compile Include="Services\HopDongs\HopDongProvider.cs" />
     <Compile Include="Services\KhachHangs\KhachHangProvider.cs" />
+    <Compile Include="Services\LoaiHinhDanhGias\LoaiHinhDanhGiaProvider.cs" />
+    <Compile Include="Services\PhamViDanhGias\PhamViDanhGiaProvider.cs" />
+    <Compile Include="Services\PhanQuyens\PhanQuyenProvider.cs" />
+    <Compile Include="Services\PhatHienDanhGias\PhatHienDanhGiaProvider.cs" />
+    <Compile Include="Services\ThamXets\ThamXetProvider.cs" />
+    <Compile Include="Services\ThanhPhanDanhGias\ThanhPhanDanhGiaProvider.cs" />
+    <Compile Include="Services\ThanhToans\ThanhToanProvider.cs" />
+    <Compile Include="Services\ThongBaos\ThongBaoProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,28 +125,6 @@
       <Name>NDK.ApplicationCore</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\DanhMucs\CheckLists\" />
-    <Folder Include="Services\DanhMucs\ChiPhis\" />
-    <Folder Include="Services\DanhMucs\ChucVus\" />
-    <Folder Include="Services\DanhMucs\DoiTuongPQs\" />
-    <Folder Include="Services\DanhMucs\LoaiHDs\" />
-    <Folder Include="Services\DanhMucs\LoaiHinhDanhGias\" />
-    <Folder Include="Services\DanhMucs\NaceCodes\" />
-    <Folder Include="Services\DanhMucs\PhongBans\" />
-    <Folder Include="Services\DanhMucs\TaiLieus\" />
-    <Folder Include="Services\DanhMucs\TieuChuans\" />
-    <Folder Include="Services\DanhMucs\TrangThais\" />
-    <Folder Include="Services\HeThongs\" />
-    <Folder Include="Services\HopDongs\" />
-    <Folder Include="Services\LoaiHinhDanhGias\" />
-    <Folder Include="Services\PhamViDanhGias\" />
-    <Folder Include="Services\PhanQuyens\" />
-    <Folder Include="Services\PhatHienDanhGias\" />
-    <Folder Include="Services\ThamSets\" />
-    <Folder Include="Services\ThanhPhanDanhGias\" />
-    <Folder Include="Services\ThanhToans\" />
-    <Folder Include="Services\ThongBaos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
