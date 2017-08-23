@@ -51,6 +51,7 @@
     <Compile Include="EFGenericRepository\EntityFrameworkRepository.cs" />
     <Compile Include="EFGenericRepository\IRepository.cs" />
     <Compile Include="Extensions\ResponseResults\AccessEntityStatusCode.cs" />
+    <Compile Include="Extensions\ResponseResults\Class1.cs" />
     <Compile Include="Extensions\ResponseResults\ResponseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
